@@ -7,21 +7,23 @@ function getEstudiantes(){
     .then((response) => response.json())
     .then(res => {
         console.log(res);
-        listadoEstudiantes(res);
+        compararEstudiantes(res);
     })
     .catch(error => {
         console.error(error);
     })
 }
 
-function listadoEstudiantes(estudiantes){
-    const result = document.querySelector(".result").value;
-    estudiantes.map((data , i) => {
-        let nombre = document.createElement('h2');
-        nombre.textContent = `${i} - ${data.name}, ${data.username}`;
-        result.appendChild(nombre);
-        load.style.display = 'none';
-    });
+function compararEstudiantes(estudiantes){
+    const codigo = document.querySelector("#codigo").value;
+    const contrasena = document.querySelector("#contrasena").value;
+
+    for(let i = 0; i < estudiantes.length ; i++){
+        if(estudiantes[i].codigo == codigo && estudiantes[i].clave == contrasena){
+            console.log("ingreso exitoso");
+        }
+    }
+    
 }
 
 getEstudiantes();
