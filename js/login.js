@@ -4,5 +4,12 @@ function ingresar(){
 }
 
 function estudiantes(){
-    fetch
+    fetch('https://24a0dac0-2579-4138-985c-bec2df4bdfcc-00-3unzo70c406dl.riker.replit.dev/students')
+    .then(response =>{
+        return response.json()
+    })
+    .then(data => {
+        console.log(data);
+    })
+
 }
