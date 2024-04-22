@@ -1,17 +1,27 @@
-const urlStudents = "https://24a0dac0-2579-4138-985c-bec2df4bdfcc-00-3unzo70c406dl.riker.replit.dev/students";
-const codigo = document.querySelector("#codigo").value;
-const contrasena = document.querySelector("#contrasena").value;
-
-fetch(urlStudents)
-    .then(res => res.json())
-    .then(data => {
-        console.log(compararEstudiantes(data));
-    })
-
-function compararEstudiantes(data){
-    for(let i = 0; i <= data.length; i++){
-        if(data[i].codigo == codigo && data[i].clave == contrasena){
-            return "Inicio sesión";
+function getEstudiantes(){
+    fetch('https://24a0dac0-2579-4138-985c-bec2df4bdfcc-00-3unzo70c406dl.riker.replit.dev/students', {
+        headers: {
+            Accept: 'application/json',
         }
-    }
+    })
+    .then((response) => response.json())
+    .then(res => {
+        console.log(res);
+        listadoEstudiantes(res);
+    })
+    .catch(error => {
+        console.error(error);
+    })
 }
+
+function listadoEstudiantes(estudiantes){
+    const result = document.querySelector(".result").value;
+    estudiantes.map((data , i) => {
+        let nombre = document.createElement('h2');
+        nombre.textContent = `${i} - ${data.name}, ${data.username}`;
+        result.appendChild(nombre);
+        load.style.display = 'none';
+    });
+}
+
+getEstudiantes();
