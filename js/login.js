@@ -25,5 +25,3 @@ function compararEstudiantes(estudiantes){
     }
     
 }
-
-getEstudiantes();
